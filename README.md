@@ -19,6 +19,12 @@ cd ../backend
 yarn install
 ```
 
+Add a `.env` file in the `backend` folder with the following configuration:
+```
+DATABASE_URL=<database_url>
+NODE_ENV=<development|production>
+```
+
 ## Run locally
 
 Run both backend and frontend
