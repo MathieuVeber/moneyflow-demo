@@ -3,7 +3,6 @@ import { Button, Modal } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { Route, Routes } from "react-router-dom";
 
-import HomePageScreen from "./Page/Components/DefaultPageScreen";
 import PageScreen from "./Page/Components/PageScreen";
 import { errorSelector, resetError } from "./Page/reducer";
 import { ErrorEnum } from "./utils/errors";
@@ -31,7 +30,7 @@ function AppLayout() {
   return (
     <>
       <Routes>
-          <Route path="/" element={<HomePageScreen/>}/>
+          <Route path="/" element={<PageScreen/>}/>
           <Route path='/:title' element={<PageScreen/>} />
       </Routes>
 
@@ -40,11 +39,11 @@ function AppLayout() {
           <Modal.Title>{error}</Modal.Title>
         </Modal.Header>
         <Modal.Body>{errorMessage()}</Modal.Body>
-        {error === ErrorEnum.SAME_TITLE ?
+        {error !== ErrorEnum.SAME_TITLE ?
           <Modal.Footer>
             <Button
               variant="outline-warning"
-              onClick={window.location.reload}
+              onClick={() => window.location.reload()}
             >
               Refresh
             </Button>

@@ -14,7 +14,10 @@ function PageScreen() {
 
   useEffect(() => {
     if(params.title){
-      dispatch(getPage({title: params.title}))
+      dispatch(getPage({title: params.title}));
+    }
+    else {
+      dispatch(getPage({title: 'Moneyflow Wiki'}));
     }
   }, [dispatch, params.title]);
 

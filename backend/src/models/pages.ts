@@ -35,7 +35,7 @@ const pageInit = (sequelize: Sequelize) => {
       unique: true
     },
     content: {
-      type: DataTypes.STRING,
+      type: DataTypes.TEXT,
     },
     views: {
       type: DataTypes.INTEGER,
