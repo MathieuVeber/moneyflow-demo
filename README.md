@@ -1,7 +1,7 @@
 # Moneyflow wiki
 
 ## Check the online wiki
-Just follow this [link](https://moneyflow-demo.herokuapp.com/)
+Just follow this [link](https://moneyflow-wiki.herokuapp.com/)
 
 ## Installation
 

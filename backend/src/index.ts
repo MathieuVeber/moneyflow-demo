@@ -8,11 +8,13 @@ import { pageInit } from "./models/pages";
 
 // Config
 dotenv.config();
-const PORT = 8000;
+const PORT = process.env.PORT || 8000;
 const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(cors());
+app.use(cors({
+  origin: process.env.CORS_ORIGIN || "*"
+}));
 
 // Routes
 app.use("/pages", pagesRoutes);

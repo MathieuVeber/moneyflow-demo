@@ -3,7 +3,7 @@ import axios from "axios";
 import { ErrorEnum } from "./errors";
 
 const api = axios.create({
-  baseURL: "http://localhost:8000",
+  baseURL: process.env.API_URL || "http://localhost:8000",
 });
 
 const handleAPIError = (error: any): ErrorEnum => {
