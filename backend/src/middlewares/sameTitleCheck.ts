@@ -14,7 +14,8 @@ const sameTitleCheck = async (
   let pages: Page[];
   try {
     pages = await Page.findAll({ where: { title: req.body.title } });
-  } catch (error) {
+  }
+  catch (error) {
     return res.status(500).send(ErrorEnum.SERVER_ERROR);
   }
   if ( pages.length !== 0

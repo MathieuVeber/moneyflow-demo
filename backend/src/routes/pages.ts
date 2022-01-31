@@ -15,7 +15,8 @@ router.post(
     let page: Page | void;
     try {
       page = await Page.create({title: req.body.title, content: req.body.content});
-    } catch (error) {
+    }
+    catch (error) {
       return res.status(500).send(ErrorEnum.SERVER_ERROR);
     }
 
@@ -29,7 +30,8 @@ router.get("/:pageTitle", async (req: Request, res: Response) => {
     pages = await Page.findAll({
     where: { title: req.params.pageTitle }
     });
-  } catch (error) {
+  }
+  catch (error) {
     return res.status(500).send(ErrorEnum.SERVER_ERROR);
   }
 
@@ -54,7 +56,8 @@ router.patch(
         { title: req.body.title, content: req.body.content },
         { where: { id: req.params.pageId }, returning: true }
       );
-    } catch (error) {
+    }
+    catch (error) {
       return res.status(500).send(ErrorEnum.SERVER_ERROR);
     }
 
