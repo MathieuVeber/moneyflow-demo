@@ -11,4 +11,5 @@ export interface PageState {
   current?: Page;
   loading: boolean;
   error?: ErrorEnum;
+  shouldRedirect: boolean
 }

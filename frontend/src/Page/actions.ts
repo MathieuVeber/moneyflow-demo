@@ -27,7 +27,7 @@ export const getPage = createAsyncThunk<
   { page: Page },
   { title: string },
   { state: RootState }
->("page/getpage", async ({ title }, thunkAPI) => {
+>("page/get", async ({ title }, thunkAPI) => {
   let response: AxiosResponse<Page>;
 
   try {

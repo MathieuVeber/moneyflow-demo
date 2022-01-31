@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { Button, Card, Col, Container, Form, Row, Spinner } from "react-bootstrap";
 
 import { createPage, updatePage } from "../actions";
 import { Page } from "../types";
+import { shouldRedirectSelector, resetRedirect } from "../reducer";
 
 interface Props {
   page: Page;
@@ -14,6 +15,7 @@ function PageContent(props: Props) {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
+  const shouldRedirect = useSelector(shouldRedirectSelector);
   const [editMode, setEditMode] = useState(false);
   const [title, setTitle] = useState(props.page.title);
   const [content, setContent] = useState<string>('Loading...');
@@ -30,6 +32,14 @@ function PageContent(props: Props) {
     setDisplayContent(handleContent(content));
   }, [content]);
 
+  useEffect(() => {
+    if (shouldRedirect) {
+      console.log('here');
+      navigate(`/${title}`);
+      resetRedirect()
+    }
+  }, [shouldRedirect, navigate, title])
+
   const handleCancel = () => {
     setTitle(props.page.title);
     setContent(props.page.content);
@@ -42,9 +52,6 @@ function PageContent(props: Props) {
     }
     else {
       dispatch(createPage({title, content}));
-    }
-    if (title !== props.page.title) {
-      navigate(`/${title}`);
     }
   }
 
@@ -95,7 +102,11 @@ function PageContent(props: Props) {
                     </Col>
 
                     <Col xs={6} className="d-flex flex-row-reverse">
-                      <Button variant="outline-success" onClick={handleSave}>
+                      <Button
+                        variant="outline-success"
+                        onClick={handleSave}
+                        disabled={content.length < 1 || title.length < 1 ? true : false}
+                      >
                         Save
                       </Button>
                     </Col>
